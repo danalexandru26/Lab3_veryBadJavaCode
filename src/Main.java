@@ -126,28 +126,28 @@ public class Main {
     }
 
     public static void printAll(ArrayList<Product> products) {
-        for(Product product : products)System.out.format("\n\n=====================\n\n %s", product);
+        for(Product product : products) System.out.format("\n\n%s", product);
     }
 
     public static void printSoldProducts(ArrayList<Product> products) {
         for(Product product : products) {
-            if(product.getState() == State.SOLD) System.out.format("\n\n=====================\n\n %s", product);
+            if(product.getState() == State.SOLD) System.out.format("\n\n%s", product);
         }
     }
 
     public static void printPrinters(ArrayList<Product> products) {
         for (Product product : products) {
-            if (product instanceof Printers) System.out.format("\n\n=====================\n\n %s", product);
+            if (product instanceof Printers) System.out.format("\n\n%s", product);
         }
     }
     public static void printScanners(ArrayList<Product> products) {
         for (Product product : products) {
-            if (product instanceof Scanner) System.out.format("\n\n=====================\n\n %s", product);
+            if (product instanceof Scanner) System.out.format("\n\n%s", product);
         }
     }
     public static void printComputers(ArrayList<Product> products) {
         for (Product product : products) {
-            if (product instanceof Computer) System.out.format("\n\n=====================\n\n %s", product);
+            if (product instanceof Computer) System.out.format("\n\n%s", product);
         }
     }
     public static void loadData(ArrayList<Product> products){
