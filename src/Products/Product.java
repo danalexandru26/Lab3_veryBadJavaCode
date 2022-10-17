@@ -8,7 +8,6 @@ public class Product {
     int inventoryId;
     double price;
     State state;
-
     static int ID = 0;
 
     private Product() {
@@ -27,6 +26,10 @@ public class Product {
 
     public void setState(String newState) {
         state = State.valueOf(newState);
+    }
+
+    public State getState() {
+        return state;
     }
 
     @Override

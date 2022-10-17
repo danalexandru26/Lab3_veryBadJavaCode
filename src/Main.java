@@ -1,3 +1,4 @@
+import Enums.State;
 import Products.Computer;
 import Products.Printers;
 import Products.Product;
@@ -26,7 +27,7 @@ public class Main {
         while (running) {
             System.out.println("\n-1 - Quit \n0 - Print all \n1 - Print Printers " +
                     "\n2 - Print Scanners \n3 - Print Computers \n4 - Modify state" +
-                    "\n5 - Set Printer mode \n6 - Set scanner mode");
+                    "\n5 - Set Printer mode \n6 - Set scanner mode \n7 - Set computer OS \n8 - Print Sold");
             option = scanner.nextInt();
             switch (option) {
                 case -1 -> running = false;
@@ -37,6 +38,8 @@ public class Main {
                 case 4 -> modifyState(products, scanner);
                 case 5 -> modifyPrinterState(products, scanner);
                 case 6 -> modifyScannerState(products, scanner);
+                case 7 -> modifyComputerState(products, scanner);
+                case 8 -> printSoldProducts(products);
                 default -> System.out.println("Wrong choice, try again!");
             }
         }
@@ -81,6 +84,26 @@ public class Main {
         }
     }
 
+    public static void modifyComputerState(ArrayList<Product> product, java.util.Scanner scanner) {
+        printComputers(product);
+
+        System.out.println("\nPick a printer id from those above!");
+        int index = scanner.nextInt();
+        if(index < product.size() && product.get(index) instanceof Computer) {
+            System.out.println("\n! Modify printer mode to ! \n1 - Windows \n2 - Linux");
+            int newMode = scanner.nextInt();
+
+            switch (newMode) {
+                case 1 -> product.get(index).setMode("Windows");
+                case 2 -> product.get(index).setMode("Linux");
+                default -> System.out.println("Wrong state, choice invalidated!");
+            }
+        }
+        else {
+            System.out.println("Wrong selection, product is not a printer!");
+        }
+    }
+
     public static void modifyScannerState(ArrayList<Product> product, java.util.Scanner scanner) {
         printScanners(product);
 
@@ -105,6 +128,13 @@ public class Main {
     public static void printAll(ArrayList<Product> products) {
         for(Product product : products)System.out.format("\n\n=====================\n\n %s", product);
     }
+
+    public static void printSoldProducts(ArrayList<Product> products) {
+        for(Product product : products) {
+            if(product.getState() == State.SOLD) System.out.format("\n\n=====================\n\n %s", product);
+        }
+    }
+
     public static void printPrinters(ArrayList<Product> products) {
         for (Product product : products) {
             if (product instanceof Printers) System.out.format("\n\n=====================\n\n %s", product);
