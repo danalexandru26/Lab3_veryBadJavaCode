@@ -23,6 +23,8 @@ public class Product {
         ++ID;
     }
 
+    public void setMode(String newState){}
+
     public void setState(String newState) {
         state = State.valueOf(newState);
     }

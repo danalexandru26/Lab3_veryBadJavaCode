@@ -26,7 +26,7 @@ public class Main {
         while (running) {
             System.out.println("\n-1 - Quit \n0 - Print all \n1 - Print Printers " +
                     "\n2 - Print Scanners \n3 - Print Computers \n4 - Modify state" +
-                    "\n5 - Set Printer Mode");
+                    "\n5 - Set Printer mode \n6 - Set scanner mode");
             option = scanner.nextInt();
             switch (option) {
                 case -1 -> running = false;
@@ -36,6 +36,7 @@ public class Main {
                 case 3 -> printComputers(products);
                 case 4 -> modifyState(products, scanner);
                 case 5 -> modifyPrinterState(products, scanner);
+                case 6 -> modifyScannerState(products, scanner);
                 default -> System.out.println("Wrong choice, try again!");
             }
         }
@@ -65,21 +66,40 @@ public class Main {
 
         System.out.println("\nPick a printer id from those above!");
         int index = scanner.nextInt();
-        if(index < product.size() && product.get(index) instanceof Printers printer) {
-
+        if(index < product.size() && product.get(index) instanceof Printers) {
             System.out.println("\n! Modify printer mode to ! \n1 - COLOUR \n2 - GREYSCALE");
             int newMode = scanner.nextInt();
 
             switch (newMode) {
-                case 1 -> printer.setMode("COLOUR");
-                case 2 -> printer.setMode("GREYSCALE");
+                case 1 -> product.get(index).setMode("COLOUR");
+                case 2 -> product.get(index).setMode("GREYSCALE");
                 default -> System.out.println("Wrong state, choice invalidated!");
             }
         }
         else {
             System.out.println("Wrong selection, product is not a printer!");
         }
+    }
 
+    public static void modifyScannerState(ArrayList<Product> product, java.util.Scanner scanner) {
+        printScanners(product);
+
+        System.out.println("\nPick a scanner id from those above!");
+        int index = scanner.nextInt();
+
+        if(index < product.size() && product.get(index) instanceof Scanner) {
+            System.out.println("\n! Modify printer mode to ! \n1 - A3 \n2 - A4");
+            int newMode = scanner.nextInt();
+
+            switch(newMode) {
+                case 1 -> product.get(index).setMode("A3");
+                case 2 -> product.get(index).setMode("A4");
+                default -> System.out.println("Wrong state, choice invalidated!");
+            }
+        }
+        else{
+            System.out.println("Wrong selection, product is not a scanner!");
+        }
     }
 
     public static void printAll(ArrayList<Product> products) {

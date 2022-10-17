@@ -9,7 +9,7 @@ public class Typewriter extends Product{
     }
 
     @Override
-    public  String toString() {
+    public String toString() {
      return String.format("%s \nPages/minute: %d", super.toString(), pagesPerMinute);
     }
 }

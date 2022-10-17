@@ -14,6 +14,7 @@ public class Printers extends Typewriter {
         this.mode = PrinterModes.valueOf(mode);
     }
 
+    @Override
     public void setMode(String newMode) {
         mode = PrinterModes.valueOf(newMode);
     }

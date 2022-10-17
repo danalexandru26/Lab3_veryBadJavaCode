@@ -15,6 +15,11 @@ public class Computer extends  Product {
     }
 
     @Override
+    public void setMode(String newMode) {
+        operatingSystem = OS.valueOf(newMode);
+    }
+
+    @Override
     public String toString() {
         return String.format("%s \nCPU clock(in Ghz): %f \nStorage capacity(in GB): %f \nOperating system: %s",
                 super.toString(), cpuClock, storageCapacity, operatingSystem.toString());
